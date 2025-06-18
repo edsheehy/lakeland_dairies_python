@@ -3,6 +3,7 @@
 Status management for Lakeland Dairies Batch Processing System
 """
 
+import time
 import logging
 from typing import Dict, Any, Optional
 from communication.modbus_client import ModbusClient
