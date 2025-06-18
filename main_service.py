@@ -16,7 +16,7 @@ from pathlib import Path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from batch_processor import BatchProcessor
-from config.settings import Settings
+from config_settings import Settings
 from core.exceptions import CriticalSystemException
 
 
