@@ -9,9 +9,9 @@ import logging
 from typing import Dict, Any, List, Optional, Tuple
 from enum import Enum
 
-from ..config_settings import ZanasiConfig
-from ..core.enums import SystemComponent, OperationResult, ZanasiStatus
-from ..core.exceptions import ZanasiException, TimeoutException, RetryExhaustedException
+from config_settings import ZanasiConfig
+from core.enums import SystemComponent, OperationResult, ZanasiStatus
+from core.exceptions import ZanasiException, TimeoutException, RetryExhaustedException
 
 
 class PrintheadNumber(Enum):

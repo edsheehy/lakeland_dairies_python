@@ -5,11 +5,11 @@ Status management for Lakeland Dairies Batch Processing System
 
 import logging
 from typing import Dict, Any, Optional
-from ..communication.modbus_client import ModbusClient
-from ..core.enums import (TriggerStates, ProcessingStates, PLCStates, 
+from communication.modbus_client import ModbusClient
+from core.enums import (TriggerStates, ProcessingStates, PLCStates,
                          ErrorCodes, SystemComponent)
-from ..core.registers import PLCRegisters
-from ..core.exceptions import ModbusException, StateException
+from core.registers import PLCRegisters
+from core.exceptions import ModbusException, StateException
 
 
 class StatusManager:

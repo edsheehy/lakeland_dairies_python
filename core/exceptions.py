@@ -4,7 +4,7 @@ Custom exceptions for Lakeland Dairies Batch Processing System
 """
 
 from typing import Optional, Dict, Any
-from .enums import ErrorCodes, SystemComponent
+from enums import ErrorCodes, SystemComponent
 
 
 class LakelandBatchException(Exception):

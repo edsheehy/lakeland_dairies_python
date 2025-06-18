@@ -6,9 +6,9 @@ Data parsing and validation for Lakeland Dairies Batch Processing System
 import logging
 from typing import List, Dict, Any, Tuple, Optional
 
-from ..core.enums import BatchStates, ValidationRules
-from ..core.exceptions import DataValidationException
-from ..core.registers import BatchRegisterBuilder, RegisterValidator
+from core.enums import BatchStates, ValidationRules
+from core.exceptions import DataValidationException
+from core.registers import BatchRegisterBuilder, RegisterValidator
 
 
 class DataParser:

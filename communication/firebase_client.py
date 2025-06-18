@@ -11,9 +11,9 @@ import urllib.error
 from typing import List, Dict, Any, Optional
 from urllib.parse import urlparse
 
-from ..config.settings import FirebaseConfig
-from ..core.enums import SystemComponent, OperationResult
-from ..core.exceptions import FirebaseException, TimeoutException, RetryExhaustedException
+from config_settings import FirebaseConfig
+from core.enums import SystemComponent, OperationResult
+from core.exceptions import FirebaseException, TimeoutException, RetryExhaustedException
 
 
 class FirebaseClient:
