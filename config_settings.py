@@ -250,9 +250,9 @@ class Settings:
             errors.append("Network hosts cannot be empty")
         
         # Validate ports
-        if not (1024 <= self.modbus.port <= 65535):
+        if not (1 <= self.modbus.port <= 65535):
             errors.append("Modbus port must be between 1024 and 65535")
-        
+
         if not (1024 <= self.zanasi.printhead1_port <= 65535):
             errors.append("Zanasi printhead1 port must be between 1024 and 65535")
         
