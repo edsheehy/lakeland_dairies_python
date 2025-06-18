@@ -190,63 +190,79 @@ class ServiceManager:
             else:
                 print(f"Service startup failed: {e}")
             sys.exit(1)
-    
+
     def _service_main_loop(self):
-        """Main service loop with restart capability"""
-        restart_attempts = 0
-        max_restart_attempts = 5
-        restart_delay = 30  # seconds
-        
-        while not self.shutdown_requested:
-            try:
-                self.logger.info("Starting batch processor...")
-                self.processor.start()
-                
-                # If we get here, processor stopped normally
-                if not self.shutdown_requested:
-                    self.logger.warning("Processor stopped unexpectedly, checking for restart...")
-                    restart_attempts += 1
-                    
-                    if restart_attempts <= max_restart_attempts:
-                        self.logger.info(f"Restarting processor (attempt {restart_attempts}/{max_restart_attempts}) in {restart_delay} seconds...")
-                        time.sleep(restart_delay)
-                        
-                        # Create new processor instance
-                        try:
-                            self.processor = BatchProcessor()
-                        except Exception as e:
-                            self.logger.error(f"Failed to create new processor instance: {e}")
-                            break
-                    else:
-                        self.logger.error(f"Maximum restart attempts ({max_restart_attempts}) reached, stopping service")
-                        break
-                else:
-                    self.logger.info("Service shutdown requested, stopping gracefully")
-                    break
-                    
-            except CriticalSystemException as e:
-                self.logger.critical(f"Critical error in processor: {e}")
-                if e.requires_restart:
-                    self.logger.critical("System requires restart, exiting...")
-                    sys.exit(1)
-                break
-                
-            except KeyboardInterrupt:
-                self.logger.info("Service interrupted by user")
-                break
-                
-            except Exception as e:
-                self.logger.error(f"Unexpected error in service loop: {e}")
-                restart_attempts += 1
-                
-                if restart_attempts <= max_restart_attempts:
-                    self.logger.info(f"Attempting restart in {restart_delay} seconds...")
-                    time.sleep(restart_delay)
-                else:
-                    self.logger.error("Too many consecutive failures, stopping service")
-                    break
-        
-        self.logger.info("Service main loop exited")
+        """Simplified service loop for quick testing — exits immediately on Ctrl+C"""
+        try:
+            self.logger.info("Starting batch processor (test mode)...")
+            self.processor.start()
+        except KeyboardInterrupt:
+            self.logger.info("Service interrupted by user via Ctrl+C")
+        except CriticalSystemException as e:
+            self.logger.critical(f"Critical error in processor: {e}")
+            if e.requires_restart:
+                self.logger.critical("System requires restart, exiting...")
+                sys.exit(1)
+        except Exception as e:
+            self.logger.error(f"Unexpected error in processor: {e}")
+        finally:
+            self.logger.info("Exiting immediately for testing")
+    # def _service_main_loop(self):
+    #     """Main service loop with restart capability"""
+    #     restart_attempts = 0
+    #     max_restart_attempts = 5
+    #     restart_delay = 30  # seconds
+    #
+    #     while not self.shutdown_requested:
+    #         try:
+    #             self.logger.info("Starting batch processor...")
+    #             self.processor.start()
+    #
+    #             # If we get here, processor stopped normally
+    #             if not self.shutdown_requested:
+    #                 self.logger.warning("Processor stopped unexpectedly, checking for restart...")
+    #                 restart_attempts += 1
+    #
+    #                 if restart_attempts <= max_restart_attempts:
+    #                     self.logger.info(f"Restarting processor (attempt {restart_attempts}/{max_restart_attempts}) in {restart_delay} seconds...")
+    #                     time.sleep(restart_delay)
+    #
+    #                     # Create new processor instance
+    #                     try:
+    #                         self.processor = BatchProcessor()
+    #                     except Exception as e:
+    #                         self.logger.error(f"Failed to create new processor instance: {e}")
+    #                         break
+    #                 else:
+    #                     self.logger.error(f"Maximum restart attempts ({max_restart_attempts}) reached, stopping service")
+    #                     break
+    #             else:
+    #                 self.logger.info("Service shutdown requested, stopping gracefully")
+    #                 break
+    #
+    #         except CriticalSystemException as e:
+    #             self.logger.critical(f"Critical error in processor: {e}")
+    #             if e.requires_restart:
+    #                 self.logger.critical("System requires restart, exiting...")
+    #                 sys.exit(1)
+    #             break
+    #
+    #         except KeyboardInterrupt:
+    #             self.logger.info("Service interrupted by user")
+    #             break
+    #
+    #         except Exception as e:
+    #             self.logger.error(f"Unexpected error in service loop: {e}")
+    #             restart_attempts += 1
+    #
+    #             if restart_attempts <= max_restart_attempts:
+    #                 self.logger.info(f"Attempting restart in {restart_delay} seconds...")
+    #                 time.sleep(restart_delay)
+    #             else:
+    #                 self.logger.error("Too many consecutive failures, stopping service")
+    #                 break
+    #
+    #     self.logger.info("Service main loop exited")
     
     def stop_service(self, pid_file_path: str = None):
         """Stop running service using PID file"""
