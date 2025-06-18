@@ -9,9 +9,9 @@ from typing import Optional, List, Union
 from pymodbus.client import ModbusTcpClient
 from pymodbus.exceptions import ConnectionException
 
-from ..config_settings import ModbusConfig
-from ..core.enums import SystemComponent, ConnectionState, OperationResult
-from ..core.exceptions import ModbusException, TimeoutException, RetryExhaustedException
+from config_settings import ModbusConfig
+from core.enums import SystemComponent, ConnectionState, OperationResult
+from core.exceptions import ModbusException, TimeoutException, RetryExhaustedException
 
 
 class ModbusClient:
