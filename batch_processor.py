@@ -10,7 +10,7 @@ import signal
 import sys
 from typing import Optional, Dict, Any
 
-from config.settings import Settings
+from config_settings import Settings
 from communication.modbus_client import ModbusClientFactory
 from communication.firebase_client import FirebaseClientFactory
 from communication.zanasi_client import ZanasiClientFactory

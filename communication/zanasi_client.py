@@ -9,7 +9,7 @@ import logging
 from typing import Dict, Any, List, Optional, Tuple
 from enum import Enum
 
-from ..config.settings import ZanasiConfig
+from ..config_settings import ZanasiConfig
 from ..core.enums import SystemComponent, OperationResult, ZanasiStatus
 from ..core.exceptions import ZanasiException, TimeoutException, RetryExhaustedException
 
