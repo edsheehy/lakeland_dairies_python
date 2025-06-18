@@ -237,8 +237,10 @@ class BatchProcessor:
                     self.last_trigger_state = current_trigger
                 
                 # Sleep before next iteration
+                self.logger.info("Line before time.sleep")
                 time.sleep(self.settings.processing.polling_interval)
-                
+                self.logger.info("Line after time.sleep")
+
             except LakelandBatchException as e:
                 self.logger.error(f"Batch processing error: {e}")
                 self.error_count += 1
