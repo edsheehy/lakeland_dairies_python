@@ -4,7 +4,7 @@ PLC Register mapping and utilities for Lakeland Dairies Batch Processing System
 """
 
 from typing import Tuple, List, Dict, Any
-from enums import RegisterConstants
+from core.enums import RegisterConstants
 
 
 class PLCRegisters:
